@@ -13,15 +13,13 @@ namespace ExcelHelp
             {
                 excelApp = new Excel.Application();
                 excelApp.Visible = true;
-                return excelApp.Workbooks.Open(path);
             }
             else
             {
                 if (IsWbOpen(excelApp, path))
                     return excelApp.Workbooks[Path.GetFileName(path)];
-                
-                return excelApp.Workbooks.Open(path);
             }
+            return excelApp.Workbooks.Open(path);
         }
 
         public Excel.Workbook CreateWb()
@@ -79,7 +77,7 @@ namespace ExcelHelp
             long lastCol = FindLastCol(sheet);
 
             if (lastRow != 0)
-                return (sheet.Range["A3", sheet.Cells[lastRow, lastCol]]);
+                return (sheet.Range["A1", sheet.Cells[lastRow, lastCol]]);
             else
                 return (null);
         }

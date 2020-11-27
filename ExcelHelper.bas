@@ -19,6 +19,7 @@ End Function
 'Handles the following situations:
 '   - Excel application running / not running
 '   - Workbook is open / closed
+'   - Another workbook with the same name is open
 Function openWb(ByVal path As String) As Excel.Workbook
 
     Set excelApp = getExcelAppIfOpen
@@ -187,8 +188,8 @@ Function selectEverythingOnSheet(ByRef sheet As Excel.Worksheet) As Range
 
 End Function
 
-Sub copyRow(ByRef sheetA As Excel.Worksheet, ByVal rowNumA As Integer, ByRef sheetB As Excel.Worksheet, ByVal rowNumB As Integer)
-    sheetA.Rows(rowNumA).Copy Destination:=sheetB.Rows(rowNumB)
+Sub copyRow(ByRef sourceSheet As Excel.Worksheet, ByVal sourceRow As Integer, ByRef destinationSheet As Excel.Worksheet, ByVal destinationRow As Integer)
+    sourceSheet.Rows(sourceRow).Copy Destination:=destinationSheet.Rows(destinationRow)
 End Sub
 
 Function nameFromPath(ByVal path As String) As String
